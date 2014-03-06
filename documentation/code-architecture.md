@@ -60,4 +60,4 @@ Which allows perhaps some easier extension by developers
 ## Remove a field
 
     $form->remove_field( $my_text_field_0 );
-    $my_text_field_2 = $form->remove_field_at( 2 );
+    $my_text_field_2 = $form->remove_field_at( 1 );

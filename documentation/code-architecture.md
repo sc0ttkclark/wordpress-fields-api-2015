@@ -1,6 +1,6 @@
 # Code Architecture
 
-##Create a basic form as an instance of `WP_Form`
+## Create a basic form as an instance of `WP_Form`
 
     $form = new WP_Form( array(
         'id' => 'my-id', // Optional, could be auto-generated. Not really needed, other than for CSS purposes
@@ -10,7 +10,7 @@
     ) );
 
 
-##Create a new, reusable text field. 
+## Create a new, reusable text field. 
 
 Do we want to keep a single, generic `WP_Form_Field` object to keep the WP_ namespace relatively uncluttered? 
 
@@ -30,3 +30,34 @@ Which allows perhaps some easier extension by developers
         }
     }
     
+## Register a field with an existing form
+
+    $form->register_field( $text_field_1 );
+    
+## Register an anonymous field
+
+    $form->register_field( new WP_Text_Field( 'my_text_field_3' ) );
+    
+## Register a bunch of fields
+
+    $form->register_fields( array(
+        $text_field_1,
+        $text_field_2,
+        new WP_Text_Field( 'my_text_field_3' )
+    ) );
+    
+## Get a field
+
+    $first_field = $form->get_field_at( 0 );
+    
+## Specify the position of a field
+
+    $form->add_field_at( 0, $text_field_0 ); // will insert at the "top" of the field list
+    
+    $third_field = $form->get_field_at( 2 );
+    $form->add_field_before( $third_field );
+    
+## Remove a field
+
+    $form->remove_field( $my_text_field_0 );
+    $my_text_field_2 = $form->remove_field_at( 2 );

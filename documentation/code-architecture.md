@@ -1,6 +1,8 @@
 # Code Architecture
 
-## Option 1: Procedural methods in the global namespace
+## Procedural methods in the global namespace
+
+Developer API will be procedural, like `register_post_type()`, though these could be wrappers to OOP classes behind the scenes.
 
 ### Register a basic form
 
@@ -35,7 +37,15 @@ Or set it when the form is registered
     register_form( 'my-form-id', array( 'field_template' => 'separate-label' ) );
     register_form( 'my-form-2', array( 'field_template' => '<label for="$id%">%label% %field%</label>' ) );
 
+
+
+
+
+
+
 ## Option 2: Object Instantiation
+
+This is off the table as of https://github.com/wordpress-metadata/metadata-ui-api/issues/3 per @nacin, but I'm leaving it here because we still might want to do something behind the scenes.
 
 ### Create a basic form as an instance of `WP_Form`
 

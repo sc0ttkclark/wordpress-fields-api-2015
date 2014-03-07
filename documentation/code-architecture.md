@@ -6,17 +6,20 @@ Developer API will be procedural, like `register_post_type()`, though these coul
 
 ### Register a basic form
 
-    register_form( 'my-form-id', $args );
+    $form_obj = register_form( 'my-form-id', $args );
     
 ### Register a generic field
 
-    register_field( 'address-1', $args );
+    $field_obj = register_field( 'address-1', $args );
     
-Or add the field directly to an already registered form
+Add a field directly to an already registered form, no need to capture the field object
 
     register_field( 'address-1', 'my-form-id', $args );
-    // Its possible to have mutable arguments and detect $args using is_array()
     
+Add the field to an already registered form
+
+    $address_field_obj = register_field( 'address-1', $args );
+    add_form_field( $form_obj, $address_field_obj );
     add_form_field( 'my-form-id', 'address-1' );
     
 Insert the field into a form, pushing subsequent fields "down" the list
@@ -26,11 +29,12 @@ Insert the field into a form, pushing subsequent fields "down" the list
     
 ### Register an HTML template for outputting a "row" of the form
 
-    register_template( 'separate-label', '<p class="form-field"><label for="%id%" >%label%</label>%field%</p>' );
+    $template_obj = register_template( 'separate-label', '<p class="form-field"><label for="%id%" >%label%</label>%field%</p>' );
     
 Use the template as the default template for a form
 
-    form_set_field_template( 'separate-label' );
+    form_set_field_template( 'my-form-id', 'separate-label' );
+    form_set-field_template( $form_obj, $template_obj );
     
 Or set it when the form is registered
 

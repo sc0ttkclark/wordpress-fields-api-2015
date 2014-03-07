@@ -30,6 +30,21 @@ Insert the field into a form, pushing subsequent fields "down" the list
 
     add_form_fields( $form_obj, array( $field_obj_1, 'field-id-2', $field_obj_3 ) );
     
+"Batch" registration of form fields
+
+    $field_obj_array = register_form_fields( array(
+        'field-id-1' => $field_1_args,
+        'field-id-2' => $field_2_args,
+        'field-id-3' => $field_3_args
+    ) );
+    add_form_fields( $form_obj, $field_obj_array );
+    
+    register_form_fields( $form_obj, array (
+        'field-id-1' => $field_1_args,
+        'field-id-2' => $field_2_args,
+        'field-id-3' => $field_3_args
+    ) );
+    
     
 ### Register an HTML template for outputting a "row" of the form
 

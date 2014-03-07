@@ -8,13 +8,13 @@ Developer API will be procedural, like `register_post_type()`, though these coul
 
     $form_obj = register_form( 'my-form-id', $args );
     
-### Register a generic field
+### Register and add form fields
 
-    $field_obj = register_field( 'address-1', $args );
+    $field_obj = register_form_field( 'address-1', $args );
     
 Add a field directly to an already registered form, no need to capture the field object
 
-    register_field( 'address-1', 'my-form-id', $args );
+    register_form_field( 'address-1', 'my-form-id', $args );
     
 Add the field to an already registered form
 
@@ -25,6 +25,10 @@ Add the field to an already registered form
 Insert the field into a form, pushing subsequent fields "down" the list
 
     add_form_field( 'my-form-id', 'name', 3 );
+    
+"Batch" adding of form fields
+    add_form_fields( $form_obj, array( $field_obj_1, 'field-id-2', $field_obj_3 ) );
+    
     
     
 ### Register an HTML template for outputting a "row" of the form

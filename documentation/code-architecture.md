@@ -1,6 +1,6 @@
 # Code Architecture
 
-## Option 1: Static methods in the global namespace
+## Option 1: Procedural methods in the global namespace
 
 ### Register a basic form
 
@@ -13,7 +13,27 @@
 Or add the field directly to an already registered form
 
     register_field( 'address-1', 'my-form-id', $args );
-    // Its possible (though questionable?) to have mutable arguments and detect $args using is_array()
+    // Its possible to have mutable arguments and detect $args using is_array()
+    
+    add_form_field( 'my-form-id', 'address-1' );
+    
+Insert the field into a form, pushing subsequent fields "down" the list
+
+    add_form_field( 'my-form-id', 'name', 3 );
+    
+    
+### Register an HTML template for outputting a "row" of the form
+
+    register_template( 'separate-label', '<p class="form-field"><label for="%id%" >%label%</label>%field%</p>' );
+    
+Use the template as the default template for a form
+
+    form_set_field_template( 'separate-label' );
+    
+Or set it when the form is registered
+
+    register_form( 'my-form-id', array( 'field_template' => 'separate-label' ) );
+    register_form( 'my-form-2', array( 'field_template' => '<label for="$id%">%label% %field%</label>' ) );
 
 ## Option 2: Object Instantiation
 
@@ -78,3 +98,7 @@ Which allows perhaps some easier extension by developers
 
     $form->remove_field( $my_text_field_0 );
     $my_text_field_2 = $form->remove_field_at( 1 );
+    
+### Register a field template
+
+    $form->set_field_template( '<p class="form-field"><label for="%id%" >%label%</label>%field%</p>' );

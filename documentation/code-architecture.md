@@ -22,24 +22,28 @@ Add the field to an already registered form
     add_form_field( $form_obj, $address_field_obj );
     add_form_field( 'my-form-id', 'address-1' );
     
-Insert the field into a form, pushing subsequent fields "down" the list
+Insert a field into a form, pushing subsequent fields "down" the list
 
-    add_form_field( 'my-form-id', 'name', 3 );
+    add_form_field( 'my-form-id', 'field-id', 3 );
     
 ### Batch adding of fields
 
-    begin_add_form_fields( 'my-form-id', $defaults );
-        register_form_field( 'field-1', $field_1_args );
-        register_form_field( 'field-2', $field_2_args );
-        register_form_field( 'field-3', $field_3_args );
-    end_add_form_fields();
+Manually
 
+    $fields = array(
+        'field-id-1' => $field_1_args,
+        'field-id-2' => $field_2_args,
+        'field-id-3' => $field_3_args
+    );
+    foreach( $fields as $field_id => $field_args ){
+        register_form_field( 'my-form-id', $field_id, $field_args );
+    }
     
-Procedural way
+Using a convenience function
 
     add_form_fields( $form_obj, array( $field_obj_1, 'field-id-2', $field_obj_3 ) );
     
-"Batch" registration of form fields
+Batch registration of generic form fields, then explicitly adding them to a form
 
     $field_obj_array = register_form_fields( array(
         'field-id-1' => $field_1_args,
@@ -48,11 +52,17 @@ Procedural way
     ) );
     add_form_fields( $form_obj, $field_obj_array );
     
+
+Batch registration of form fields, adding them to the form at once  
+    
     register_form_fields( $form_obj, array (
         'field-id-1' => $field_1_args,
         'field-id-2' => $field_2_args,
         'field-id-3' => $field_3_args
     ) );
+    
+
+    
     
     
 ### Register an HTML template for outputting a "row" of the form

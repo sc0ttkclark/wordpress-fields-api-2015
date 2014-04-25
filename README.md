@@ -21,19 +21,19 @@ For this branch there is no documentation ready yet.
         'form'    =>  'after-title',
       ));
 
-      register_post_field( 'website',  self::POST_TYPE,  array(
+      register_post_field( 'website', 'pm_solution',  array(
         'type'              =>  'url',
         'label'             =>  __( 'Website',  'pm-sherpa' ),
         'html_placeholder'  =>  'http://www.example.com',
         'html_size'         =>  50,
       ));
 
-      register_post_field( 'tagline',  self::POST_TYPE,  array(
+      register_post_field( 'tagline', 'pm_solution',  array(
         'label'     =>  __( 'Tagline',  'pm-sherpa' ),
         'html_size' =>  50,
       ));
 
-      register_post_field( 'blurb',  self::POST_TYPE,  array(
+      register_post_field( 'blurb', 'pm_solution',  array(
         'type'      =>  'textarea',
         'label'     =>  __( 'Blurb',  'pm-sherpa' ),
         'html_size' =>  160,
